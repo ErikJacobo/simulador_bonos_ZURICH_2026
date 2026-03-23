@@ -280,9 +280,9 @@ if es_impulza:
 
     with tab7:
         st.markdown('<div class="seccion-titulo">Resumen — ImpulZa</div>', unsafe_allow_html=True)
-        b_ad=st.session_state.get("iz_ad",0); b_vg=st.session_state.get("iz_vg",0)
-        b_ap=st.session_state.get("iz_ap",0); b_rec=st.session_state.get("iz_rec",0)
-        b_ua=st.session_state.get("iz_ua_b",0); b_dom=st.session_state.get("iz_dom_b",0)
+        b_ad=(st.session_state.get("iz_ad",0) or 0); b_vg=(st.session_state.get("iz_vg",0) or 0)
+        b_ap=(st.session_state.get("iz_ap",0) or 0); b_rec=(st.session_state.get("iz_rec",0) or 0)
+        b_ua=(st.session_state.get("iz_ua_b",0) or 0); b_dom=(st.session_state.get("iz_dom_b",0) or 0)
         total=b_ad+b_vg+b_ap+b_rec+b_dom
         c1,c2,c3=st.columns(3)
         c1.metric("Autos/Danos",fmt(b_ad)); c2.metric("Vida & GMM",fmt(b_vg)); c3.metric("Accidentes",fmt(b_ap))
@@ -547,8 +547,8 @@ else:
     with tab8:
         st.markdown('<div class="seccion-titulo">Resumen de Bonos — Estandar</div>', unsafe_allow_html=True)
         bkeys=["st_ai_m","st_ai_t","st_ai_a","st_ai_crec","st_fl_m","st_fl_t","st_fl_a","st_d_m","st_d_t","st_d_a","st_vg_b","st_cons_b","st_rent_b","st_ap_b","st_dom_b"]
-        vals={k:st.session_state.get(k,0) for k in bkeys}
-        b_ua=st.session_state.get("st_ua_b",0)
+        vals={k:(st.session_state.get(k,0) or 0) for k in bkeys}
+        b_ua=(st.session_state.get("st_ua_b",0) or 0)
         total=sum(vals.values())
 
         st.markdown("**Autos Individuales**")
